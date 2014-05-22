@@ -34,6 +34,12 @@
                     <span class="icon-bar"></span>
                 </button>
                 <a class="navbar-brand" href="<?php echo base_url();?>dashboard">Super Administrador</a>
+                <span class="text-muted small" style="padding-left:15px;">
+                <?php 
+                    $info_user=$this->session->userdata('info_user');
+                    echo 'Bienvenido: '.$info_user['nombres'];
+                ?>
+                </span>
             </div>
             <!-- /.navbar-header -->
 

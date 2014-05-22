@@ -22,6 +22,29 @@ class Admin extends CI_Controller {
 		$this->load->view('login');
 	}
 
+	public function login(){
+		$this->load->model('admin_model');
+
+		if($this->input->post()){
+			$email = $this->input->post('email');
+			$contrasena = md5($this->input->post('contrasena'));
+			
+			$result = $this->admin_model->login($email, $contrasena);
+
+			if($result){
+				$this->session->set_userdata('info_user',$result);
+				redirect('dashboard');
+			}else{
+				redirect('/');
+			}
+		}
+	}
+
+	public function logout(){
+		$this->session->unset_userdata('info_user');
+		redirect('/');
+	}
+
 	public function dashboard()
 	{
 		$this->load->view('dash');

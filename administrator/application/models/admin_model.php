@@ -6,6 +6,12 @@ class Admin_model extends CI_Model {
     {        
         parent::__construct();
     }
+
+    function login($email, $contrasena)
+    {
+        $query = $this->db->get_where('usuario', array('email'=>$email, 'password'=>$contrasena));
+        return $query->row_array();
+    }
     
     function obtener_usuarios()
     {

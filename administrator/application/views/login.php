@@ -27,19 +27,19 @@
                         <h3 class="panel-title">Inicio de Sesión</h3>
                     </div>
                     <div class="panel-body">
-                        <form role="form">
+                        <form role="form" action="<?php echo base_url();?>admin/login" method="post">
                             <fieldset>
                                 <div class="form-group">
                                     <img src="<?php echo base_url();?>images/logo.png" alt="OfferMalls" width="100%">
                                 </div>
                                 <div class="form-group">
-                                    <input class="form-control" placeholder="Usuario" name="usuario" autofocus>
+                                    <input class="form-control" placeholder="Email" name="email" autofocus>
                                 </div>
                                 <div class="form-group">
                                     <input class="form-control" placeholder="Contraseña" name="contrasena" type="password" value="">
                                 </div>
-                                <!-- Change this to a button or input when using this as a form -->
-                                <a href="<?php echo base_url();?>dashboard" class="btn btn-lg btn-primary btn-block">Ingresar</a>
+                                <!-- Change this to a button or input when using this as a form -->                                
+                                <button type="submit" class="btn btn-primary">Ingresar</button>
                             </fieldset>
                         </form>
                     </div>
