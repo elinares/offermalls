@@ -1,0 +1,23 @@
+body{
+	background: url(../images/construction-back.jpg) repeat-x center top;
+	background-color: #EAEAEA;
+	overflow: hidden;
+}
+
+#container{
+	top: 50%;
+	position: absolute;
+	width: 100%;
+}
+
+#container div{
+	max-width: 285px;
+	min-width: 215px;
+	left: 50%;
+	position: absolute;
+	margin-left: -142.5px;
+}
+
+#container div img{
+	width: 100%;
+}
