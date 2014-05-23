@@ -30,6 +30,7 @@ class Admin extends CI_Controller {
 			$contrasena = md5($this->input->post('contrasena'));
 			
 			$result = $this->admin_model->login($email, $contrasena);
+			print_r($result);
 
 			if($result){
 				$this->session->set_userdata('info_user',$result);
@@ -49,6 +50,8 @@ class Admin extends CI_Controller {
 	{
 		$this->load->view('dash');
 	}
+
+	/*USUARIOS*/
 
 	public function usuarios()
 	{
@@ -97,6 +100,66 @@ class Admin extends CI_Controller {
 		$data['privilegios'] = $this->admin_model->obtener_privilegios();
 
 		$this->load->view('agregar_usuario', $data);
+	}
+
+	public function editar_usuario($id){
+		$this->load->model('admin_model');
+
+		$datos = $this->admin_model->obtener_usuario($id);
+
+		if($this->input->post()){
+			$nombres = $this->input->post('nombres');
+			$apellidos = $this->input->post('apellidos');
+			$telefono = $this->input->post('telefono');
+			$celular = $this->input->post('celular');
+			$email = $this->input->post('email');
+			
+			$password = $this->input->post('contrasena');
+			if($password==''){
+				$password=$datos['password'];
+			}else{
+				$password=md5($password);
+			}
+
+			$cargo = $this->input->post('cargo');
+			$privilegio = $this->input->post('privilegio');
+			$empresa = $this->input->post('empresa');
+
+			$datos_usuario = array(
+				'nombres' => $nombres,
+				'apellidos' => $apellidos,
+				'telefono' => $telefono,
+				'celular' => $celular,
+				'email' => $email,
+				'password' => $password,
+				'codcarg' => $cargo,
+				'codprivilegio' => $privilegio,
+				'codemp' => $empresa
+				);
+
+			$result = $this->admin_model->actualizar_usuarios($datos_usuario, $id);
+
+			if($result){
+				redirect('usuarios');
+			}
+		}
+
+		$data['info_usuario'] = $datos;
+		
+		$data['cargos'] = $this->admin_model->obtener_cargos();
+		$data['empresas'] = $this->admin_model->obtener_empresas();
+		$data['privilegios'] = $this->admin_model->obtener_privilegios();
+
+		$this->load->view('editar_usuario', $data);
+	}
+
+	public function eliminar_usuario($id){
+		$this->db->where('codusr', $id);
+		$result = $this->db->delete('usuario'); 
+
+		if($result){
+			redirect('usuarios');
+		}
 	}
 }
 

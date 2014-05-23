@@ -12,11 +12,21 @@ class Admin_model extends CI_Model {
         $query = $this->db->get_where('usuario', array('email'=>$email, 'password'=>$contrasena));
         return $query->row_array();
     }
+
+    function obtener_usuario($id){
+        $query = $this->db->get_where('usuario', array('codusr'=>$id));
+        return $query->row_array();
+    }
     
     function obtener_usuarios()
     {
         $query = $this->db->get('usuario');
         return $query->result_array();
+    }
+
+    function actualizar_usuarios($datos, $id){
+        $this->db->where('codusr', $id);
+        return $this->db->update('usuario', $datos);
     }
 
     function obtener_cargos()
