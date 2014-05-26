@@ -1,3 +1,8 @@
+<?php
+if(!$this->session->userdata('info_user')){
+redirect('/');
+}
+?>
 <!DOCTYPE html>
 <html>
 
@@ -67,9 +72,19 @@
                         <li>
                             <a href="#"><i class="fa fa-table fa-fw"></i> Mantenimientos<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="<?php echo base_url();?>usuarios">Usuarios</a>
-                                </li>
+                                <li><a href="<?php echo base_url();?>cargos">Cargos</a></li>
+                                <li><a href="<?php echo base_url();?>categorias">Categorías</a></li>
+                                <li><a href="<?php echo base_url();?>ccomerciales">Centros Comerciales</a></li>                                
+                                <li><a href="<?php echo base_url();?>departamentos">Departamentos</a></li>
+                                <li><a href="<?php echo base_url();?>eclientes">Estados de Clientes</a></li>
+                                <li><a href="<?php echo base_url();?>eofertas">Estados de Ofertas</a></li>
+                                <li><a href="<?php echo base_url();?>municipios">Municipios</a></li>
+                                <li><a href="<?php echo base_url();?>subcategorias">Subcategorias</a></li>
+                                <li><a href="<?php echo base_url();?>sucursales">Sucursales</a></li>
+                                <li><a href="<?php echo base_url();?>tdescuentos">Tipos de Descuentos</a></li>                                
+                                <li><a href="<?php echo base_url();?>usuarios">Usuarios</a></li>
+                                <li><a href="<?php echo base_url();?>ufinales">Usuarios Finales</a></li>
+                                <li><a href="<?php echo base_url();?>usucursales">Usuarios de Sucursales</a></li>
                             </ul>
                             <!-- /.nav-second-level -->
                         </li>                        
