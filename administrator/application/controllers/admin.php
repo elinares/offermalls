@@ -115,6 +115,76 @@ class Admin extends CI_Controller {
 		}
 	}	
 
+	/*CENTROS COMERCIALES*/
+
+	public function ccomerciales()
+	{
+		$this->load->model('admin_model');
+		$data['ccomerciales'] = $this->admin_model->obtener_ccomerciales();
+
+		$this->load->view('lista_ccomerciales', $data);
+	}
+
+	public function agregar_ccomercial()
+	{
+		$this->load->model('admin_model');
+
+		if($this->input->post()){
+			$nombre = $this->input->post('nombre');
+			$municipio = $this->input->post('municipio');
+
+			$datos = array(
+				'nombre' => $nombre,
+				'codciudad' => $municipio
+				);
+
+			$result = $this->admin_model->guardar_ccomerciales($datos);
+
+			if($result){
+				redirect('ccomerciales');
+			}
+		}
+
+		$data['municipios'] = $this->admin_model->obtener_municipios();
+		$this->load->view('agregar_ccomercial', $data);
+	}
+
+	public function editar_ccomercial($id){
+		$this->load->model('admin_model');
+
+		$datos = $this->admin_model->obtener_ccomercial($id);
+
+		if($this->input->post()){
+			$nombre = $this->input->post('nombre');
+			$municipio = $this->input->post('municipio');
+
+			$datos_db = array(
+				'nombre' => $nombre,
+				'codciudad' => $municipio
+				);
+
+			$result = $this->admin_model->actualizar_ccomerciales($datos_db, $id);
+
+			if($result){
+				redirect('ccomerciales');
+			}
+		}
+
+		$data['municipios'] = $this->admin_model->obtener_municipios();
+		$data['info_ccomercial'] = $datos;
+
+		$this->load->view('editar_ccomercial', $data);
+	}
+
+	public function eliminar_ccomercial($id){
+		$this->db->where('codccomerc', $id);
+		$result = $this->db->delete('ccomercial'); 
+
+		if($result){
+			redirect('ccomerciales');
+		}
+	}
+
 	/*DEPARTAMENTOS*/
 
 	public function departamentos()
@@ -176,6 +246,204 @@ class Admin extends CI_Controller {
 
 		if($result){
 			redirect('departamentos');
+		}
+	}
+
+	/*ESTADOS DE CLIENTES*/
+
+	public function eclientes()
+	{
+		$this->load->model('admin_model');
+		$data['eclientes'] = $this->admin_model->obtener_eclientes();
+
+		$this->load->view('lista_eclientes', $data);
+	}
+
+	public function agregar_ecliente()
+	{
+		$this->load->model('admin_model');
+
+		if($this->input->post()){
+			$nombre = $this->input->post('nombre');
+
+			$datos = array(
+				'nombre' => $nombre
+				);
+
+			$result = $this->admin_model->guardar_eclientes($datos);
+
+			if($result){
+				redirect('eclientes');
+			}
+		}
+
+		$this->load->view('agregar_ecliente');
+	}
+
+	public function editar_ecliente($id){
+		$this->load->model('admin_model');
+
+		$datos = $this->admin_model->obtener_ecliente($id);
+
+		if($this->input->post()){
+			$nombre = $this->input->post('nombre');
+
+			$datos_db = array(
+				'nombre' => $nombre
+				);
+
+			$result = $this->admin_model->actualizar_eclientes($datos_db, $id);
+
+			if($result){
+				redirect('eclientes');
+			}
+		}
+
+		$data['info_ecliente'] = $datos;
+
+		$this->load->view('editar_ecliente', $data);
+	}
+
+	public function eliminar_ecliente($id){
+		$this->db->where('codestado', $id);
+		$result = $this->db->delete('estado'); 
+
+		if($result){
+			redirect('eclientes');
+		}
+	}
+
+	/*ESTADOS DE OFERTAS*/
+
+	public function eofertas()
+	{
+		$this->load->model('admin_model');
+		$data['eofertas'] = $this->admin_model->obtener_eofertas();
+
+		$this->load->view('lista_eofertas', $data);
+	}
+
+	public function agregar_eoferta()
+	{
+		$this->load->model('admin_model');
+
+		if($this->input->post()){
+			$nombre = $this->input->post('nombre');
+
+			$datos = array(
+				'nombre' => $nombre
+				);
+
+			$result = $this->admin_model->guardar_eofertas($datos);
+
+			if($result){
+				redirect('eofertas');
+			}
+		}
+
+		$this->load->view('agregar_eoferta');
+	}
+
+	public function editar_eoferta($id){
+		$this->load->model('admin_model');
+
+		$datos = $this->admin_model->obtener_eoferta($id);
+
+		if($this->input->post()){
+			$nombre = $this->input->post('nombre');
+
+			$datos_db = array(
+				'nombre' => $nombre
+				);
+
+			$result = $this->admin_model->actualizar_eofertas($datos_db, $id);
+
+			if($result){
+				redirect('eofertas');
+			}
+		}
+
+		$data['info_eoferta'] = $datos;
+
+		$this->load->view('editar_eoferta', $data);
+	}
+
+	public function eliminar_eoferta($id){
+		$this->db->where('idestado', $id);
+		$result = $this->db->delete('estado_oferta'); 
+
+		if($result){
+			redirect('eofertas');
+		}
+	}
+
+	/*MUNICIPIOS*/
+
+	public function municipios()
+	{
+		$this->load->model('admin_model');
+		$data['municipios'] = $this->admin_model->obtener_municipios();
+
+		$this->load->view('lista_municipios', $data);
+	}
+
+	public function agregar_municipio()
+	{
+		$this->load->model('admin_model');
+
+		if($this->input->post()){
+			$nombre = $this->input->post('nombre');
+			$departamento = $this->input->post('departamento');
+
+			$datos = array(
+				'nombre_ci' => $nombre,
+				'coddepart' => $departamento
+				);
+
+			$result = $this->admin_model->guardar_municipios($datos);
+
+			if($result){
+				redirect('municipios');
+			}
+		}
+
+		$data['departamentos'] = $this->admin_model->obtener_departamentos();
+		$this->load->view('agregar_municipio', $data);
+	}
+
+	public function editar_municipio($id){
+		$this->load->model('admin_model');
+
+		$datos = $this->admin_model->obtener_municipio($id);
+
+		if($this->input->post()){
+			$nombre = $this->input->post('nombre');
+			$departamento = $this->input->post('departamento');
+
+			$datos_db = array(
+				'nombre_ci' => $nombre,
+				'coddepart' => $departamento
+				);
+
+			$result = $this->admin_model->actualizar_municipios($datos_db, $id);
+
+			if($result){
+				redirect('municipios');
+			}
+		}
+
+		$data['departamentos'] = $this->admin_model->obtener_departamentos();
+		$data['info_municipio'] = $datos;
+
+		$this->load->view('editar_municipio', $data);
+	}
+
+	public function eliminar_municipio($id){
+		$this->db->where('codciudad', $id);
+		$result = $this->db->delete('ciudad'); 
+
+		if($result){
+			redirect('municipios');
 		}
 	}
 

@@ -47,6 +47,27 @@ class Admin_model extends CI_Model {
         return $this->db->update('cargo', $datos);
     }
 
+    /*MANTENIMIENTO CENTROS COMERCIALES*/
+
+    function obtener_ccomerciales(){
+        $query = $this->db->get('ccomercial');
+        return $query->result_array();
+    }
+
+    function guardar_ccomerciales($datos){        
+        return $this->db->insert('ccomercial', $datos);
+    }
+
+    function obtener_ccomercial($id){
+        $query = $this->db->get_where('ccomercial', array('codccomerc'=>$id));
+        return $query->row_array();
+    }
+
+    function actualizar_ccomerciales($datos, $id){
+        $this->db->where('codccomerc', $id);
+        return $this->db->update('ccomercial', $datos);
+    }
+
     /*MANTENIMIENTO DEPARTAMENTOS*/
 
     function obtener_departamentos(){
@@ -66,6 +87,69 @@ class Admin_model extends CI_Model {
     function actualizar_departamentos($datos, $id){
         $this->db->where('coddepart', $id);
         return $this->db->update('departamento', $datos);
+    }
+
+    /*MANTENIMIENTO ESTADOS CLIENTES*/
+
+    function obtener_eclientes(){
+        $query = $this->db->get('estado');
+        return $query->result_array();
+    }
+
+    function guardar_eclientes($datos){        
+        return $this->db->insert('estado', $datos);
+    }
+
+    function obtener_ecliente($id){
+        $query = $this->db->get_where('estado', array('codestado'=>$id));
+        return $query->row_array();
+    }
+
+    function actualizar_eclientes($datos, $id){
+        $this->db->where('codestado', $id);
+        return $this->db->update('estado', $datos);
+    }
+
+    /*MANTENIMIENTO ESTADOS OFERTAS*/
+
+    function obtener_eofertas(){
+        $query = $this->db->get('estado_oferta');
+        return $query->result_array();
+    }
+
+    function guardar_eofertas($datos){        
+        return $this->db->insert('estado_oferta', $datos);
+    }
+
+    function obtener_eoferta($id){
+        $query = $this->db->get_where('estado_oferta', array('idestado'=>$id));
+        return $query->row_array();
+    }
+
+    function actualizar_eofertas($datos, $id){
+        $this->db->where('idestado', $id);
+        return $this->db->update('estado_oferta', $datos);
+    }
+
+    /*MANTENIMIENTO MUNICIPIOS*/
+
+    function obtener_municipios(){
+        $query = $this->db->get('ciudad');
+        return $query->result_array();
+    }
+
+    function guardar_municipios($datos){        
+        return $this->db->insert('ciudad', $datos);
+    }
+
+    function obtener_municipio($id){
+        $query = $this->db->get_where('ciudad', array('codciudad'=>$id));
+        return $query->row_array();
+    }
+
+    function actualizar_municipios($datos, $id){
+        $this->db->where('codciudad', $id);
+        return $this->db->update('ciudad', $datos);
     }
 
     /*MANTENIMIENTO TIPOS DE DESCUENTOS*/
@@ -117,5 +201,6 @@ class Admin_model extends CI_Model {
         $query = $this->db->get('usuariofinal');
         return $query->result_array();
     }
+
 }
 ?>

@@ -3,38 +3,31 @@
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Usuarios Finales</h1>
+                    <h1 class="page-header">Estados de Ofertas</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
             <!-- /.row -->
             <div class="row">
-                <div class="col-lg-12">                                        
+                <div class="col-lg-12">                    
+                    <a href="<?php echo base_url();?>agregar_eoferta" class="btn btn-primary">Agregar Estado</a><br><br> 
                             <div class="table-responsive">
                                 <table class="table table-striped table-hover" id="dataTables-example">
                                     <thead>                                    
                                         <tr>
-                                            <th>Usuario</th>
-                                            <th>Email</th>
-                                            <th>Sexo</th>
-                                            <th>Fecha de Nacimiento</th>
-                                            <th>Fecha de Registro</th>
+                                            <th>Nombre</th>
                                             <th></th>
                                             <th></th>
                                         </tr>
                                     </thead>
                                     <tbody>                
                                         <?php
-                                            foreach($ufinales as $ufinal){
+                                            foreach($eofertas as $eoferta){
                                                 ?>
                                                 <tr>
-                                                    <td><?=$ufinal['username']?></td>
-                                                    <td><?=$ufinal['email']?></td>
-                                                    <td><?=$ufinal['genero']?></td>
-                                                    <td><?=$ufinal['fechanac']?></td>
-                                                    <td><?=$ufinal['fechaRegistro']?></td>
-                                                    <td><a href="<?php echo base_url('editar_ufinal').'/'.$ufinal['codusrfinal'];?>" type="button" class="btn btn-outline btn-info">Editar</a></td>
-                                                    <td><a href="<?php echo base_url('eliminar_ufinal').'/'.$ufinal['codusrfinal'];?>" type="button" class="btn btn-outline btn-danger">Eliminar</a></td>
+                                                    <td><?=$eoferta['nombre']?></td>
+                                                    <td><a href="<?php echo base_url('editar_eoferta').'/'.$eoferta['idestado'];?>" type="button" class="btn btn-outline btn-info">Editar</a></td>
+                                                    <td><a href="<?php echo base_url('eliminar_eoferta').'/'.$eoferta['idestado'];?>" type="button" class="btn btn-outline btn-danger">Eliminar</a></td>
                                                 </tr>
                                                 <?php
                                             }

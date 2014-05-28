@@ -3,38 +3,31 @@
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Usuarios Finales</h1>
+                    <h1 class="page-header">Municipios</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
             <!-- /.row -->
             <div class="row">
-                <div class="col-lg-12">                                        
+                <div class="col-lg-12">                    
+                    <a href="<?php echo base_url();?>agregar_municipio" class="btn btn-primary">Agregar Municipio</a><br><br> 
                             <div class="table-responsive">
                                 <table class="table table-striped table-hover" id="dataTables-example">
                                     <thead>                                    
                                         <tr>
-                                            <th>Usuario</th>
-                                            <th>Email</th>
-                                            <th>Sexo</th>
-                                            <th>Fecha de Nacimiento</th>
-                                            <th>Fecha de Registro</th>
+                                            <th>Nombre</th>
                                             <th></th>
                                             <th></th>
                                         </tr>
                                     </thead>
                                     <tbody>                
                                         <?php
-                                            foreach($ufinales as $ufinal){
+                                            foreach($municipios as $municipio){
                                                 ?>
                                                 <tr>
-                                                    <td><?=$ufinal['username']?></td>
-                                                    <td><?=$ufinal['email']?></td>
-                                                    <td><?=$ufinal['genero']?></td>
-                                                    <td><?=$ufinal['fechanac']?></td>
-                                                    <td><?=$ufinal['fechaRegistro']?></td>
-                                                    <td><a href="<?php echo base_url('editar_ufinal').'/'.$ufinal['codusrfinal'];?>" type="button" class="btn btn-outline btn-info">Editar</a></td>
-                                                    <td><a href="<?php echo base_url('eliminar_ufinal').'/'.$ufinal['codusrfinal'];?>" type="button" class="btn btn-outline btn-danger">Eliminar</a></td>
+                                                    <td><?=$municipio['nombre_ci']?></td>
+                                                    <td><a href="<?php echo base_url('editar_municipio').'/'.$municipio['codciudad'];?>" type="button" class="btn btn-outline btn-info">Editar</a></td>
+                                                    <td><a href="<?php echo base_url('eliminar_municipio').'/'.$municipio['codciudad'];?>" type="button" class="btn btn-outline btn-danger">Eliminar</a></td>
                                                 </tr>
                                                 <?php
                                             }

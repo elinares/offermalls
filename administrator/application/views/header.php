@@ -83,8 +83,7 @@ redirect('/');
                                 <li><a href="<?php echo base_url();?>sucursales">Sucursales</a></li>
                                 <li><a href="<?php echo base_url();?>tdescuentos">Tipos de Descuentos</a></li>                                
                                 <li><a href="<?php echo base_url();?>usuarios">Usuarios</a></li>
-                                <li><a href="<?php echo base_url();?>ufinales">Usuarios Finales</a></li>
-                                <li><a href="<?php echo base_url();?>usucursales">Usuarios de Sucursales</a></li>
+                                <li><a href="<?php echo base_url();?>ufinales">Usuarios Finales</a></li>                                
                             </ul>
                             <!-- /.nav-second-level -->
                         </li>                        

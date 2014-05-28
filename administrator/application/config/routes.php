@@ -51,15 +51,31 @@ $route['agregar_cargo'] = "admin/agregar_cargo";
 $route['editar_cargo/(:any)'] = "admin/editar_cargo/$1";
 $route['eliminar_cargo/(:any)'] = "admin/eliminar_cargo/$1";
 /*Categorías*/
-/*Centros Comerciales*/                        
+/*Centros Comerciales*/
+$route['ccomerciales'] = "admin/ccomerciales";
+$route['agregar_ccomercial'] = "admin/agregar_ccomercial";
+$route['editar_ccomercial/(:any)'] = "admin/editar_ccomercial/$1";
+$route['eliminar_ccomercial/(:any)'] = "admin/eliminar_ccomercial/$1";                      
 /*Departamentos*/
 $route['departamentos'] = "admin/departamentos";
 $route['agregar_departamento'] = "admin/agregar_departamento";
 $route['editar_departamento/(:any)'] = "admin/editar_departamento/$1";
 $route['eliminar_departamento/(:any)'] = "admin/eliminar_departamento/$1";
 /*Estados de Clientes*/
+$route['eclientes'] = "admin/eclientes";
+$route['agregar_ecliente'] = "admin/agregar_ecliente";
+$route['editar_ecliente/(:any)'] = "admin/editar_ecliente/$1";
+$route['eliminar_ecliente/(:any)'] = "admin/eliminar_ecliente/$1";
 /*Estados de Ofertas*/
+$route['eofertas'] = "admin/eofertas";
+$route['agregar_eoferta'] = "admin/agregar_eoferta";
+$route['editar_eoferta/(:any)'] = "admin/editar_eoferta/$1";
+$route['eliminar_eoferta/(:any)'] = "admin/eliminar_eoferta/$1";
 /*Municipios*/
+$route['municipios'] = "admin/municipios";
+$route['agregar_municipio'] = "admin/agregar_municipio";
+$route['editar_municipio/(:any)'] = "admin/editar_municipio/$1";
+$route['eliminar_municipio/(:any)'] = "admin/eliminar_municipio/$1";
 /*Subcategorias*/
 /*Sucursales*/
 /*Tipos de Descuentos*/
@@ -74,7 +90,6 @@ $route['editar_usuario/(:any)'] = "admin/editar_usuario/$1";
 $route['eliminar_usuario/(:any)'] = "admin/eliminar_usuario/$1";
 /*Usuarios Finales*/
 $route['ufinales'] = "admin/ufinales";
-/*Usuarios de Sucursales*/
 
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */
