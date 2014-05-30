@@ -30,7 +30,6 @@ class Admin extends CI_Controller {
 			$contrasena = md5($this->input->post('contrasena'));
 			
 			$result = $this->admin_model->login($email, $contrasena);
-			print_r($result);
 
 			if($result){
 				$this->session->set_userdata('info_user',$result);
