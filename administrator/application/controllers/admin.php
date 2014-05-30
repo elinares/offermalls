@@ -114,6 +114,74 @@ class Admin extends CI_Controller {
 		}
 	}	
 
+	/*CATEGORIAS*/
+
+	public function categorias()
+	{
+		$this->load->model('admin_model');
+		$data['categorias'] = $this->admin_model->obtener_categorias();
+
+		$this->load->view('lista_categorias', $data);
+	}
+
+	public function agregar_categoria()
+	{
+		$this->load->model('admin_model');
+
+		if($this->input->post()){
+			$nombre = $this->input->post('nombre');
+			$imagen = $this->input->post('imagen');
+
+			$datos = array(
+				'nombre' => $nombre,
+				'img' => $imagen
+				);
+
+			$result = $this->admin_model->guardar_categorias($datos);
+
+			if($result){
+				redirect('categorias');
+			}
+		}
+
+		$this->load->view('agregar_categoria');
+	}
+
+	public function editar_categoria($id){
+		$this->load->model('admin_model');
+
+		$datos = $this->admin_model->obtener_categoria($id);
+
+		if($this->input->post()){
+			$nombre = $this->input->post('nombre');
+			$imagen = $this->input->post('imagen');
+
+			$datos_db = array(
+				'nombre' => $nombre,
+				'img' => $imagen
+				);
+
+			$result = $this->admin_model->actualizar_categorias($datos_db, $id);
+
+			if($result){
+				redirect('categorias');
+			}
+		}
+
+		$data['info_categoria'] = $datos;
+
+		$this->load->view('editar_categoria', $data);
+	}
+
+	public function eliminar_categoria($id){
+		$this->db->where('idcategoria', $id);
+		$result = $this->db->delete('categoria'); 
+
+		if($result){
+			redirect('categorias');
+		}
+	}
+
 	/*CENTROS COMERCIALES*/
 
 	public function ccomerciales()
@@ -443,6 +511,78 @@ class Admin extends CI_Controller {
 
 		if($result){
 			redirect('municipios');
+		}
+	}
+
+	/*SUBCATEGORIAS*/
+
+	public function subcategorias()
+	{
+		$this->load->model('admin_model');
+		$data['subcategorias'] = $this->admin_model->obtener_subcategorias();
+
+		$this->load->view('lista_subcategorias', $data);
+	}
+
+	public function agregar_subcategoria()
+	{
+		$this->load->model('admin_model');
+
+		if($this->input->post()){
+			$nombre = $this->input->post('nombre');
+			$categoria = $this->input->post('categoria');
+
+			$datos = array(
+				'nombre' => $nombre,
+				'img' => 'default',
+				'idcategoria' => $categoria
+				);
+
+			$result = $this->admin_model->guardar_subcategorias($datos);
+
+			if($result){
+				redirect('subcategorias');
+			}
+		}
+
+		$data['categorias'] = $this->admin_model->obtener_categorias();
+		$this->load->view('agregar_subcategoria', $data);
+	}
+
+	public function editar_subcategoria($id){
+		$this->load->model('admin_model');
+
+		$datos = $this->admin_model->obtener_subcategoria($id);
+
+		if($this->input->post()){
+			$nombre = $this->input->post('nombre');
+			$categoria = $this->input->post('categoria');
+
+			$datos_db = array(
+				'nombre' => $nombre,
+				'img' => 'default',
+				'idcategoria' => $categoria
+				);
+
+			$result = $this->admin_model->actualizar_subcategorias($datos_db, $id);
+
+			if($result){
+				redirect('subcategorias');
+			}
+		}
+
+		$data['categorias'] = $this->admin_model->obtener_categorias();
+		$data['info_subcategoria'] = $datos;
+
+		$this->load->view('editar_subcategoria', $data);
+	}
+
+	public function eliminar_subcategoria($id){
+		$this->db->where('codsubcat', $id);
+		$result = $this->db->delete('subcategoria'); 
+
+		if($result){
+			redirect('subcategorias');
 		}
 	}
 
